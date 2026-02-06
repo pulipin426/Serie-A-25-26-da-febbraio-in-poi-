@@ -13,59 +13,47 @@
     background: #f9f9f9;
   }
 
-  .container {
-    width: 100%;
-    height: 100%;
-    margin: 0 auto;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: flex-start;
-  }
-
   h1 {
-    color: #0c5a2b;
-    font-size: 2rem;
-    margin: 10px 0;
     text-align: center;
+    color: #0c5a2b;
+    margin: 10px 0;
   }
 
   iframe {
     width: 100%;
-    height: calc(100% - 60px); /* spazio per header */
+    height: calc(100% - 50px); /* spazio per header */
     border: none;
   }
 
   @media(max-width:600px){
     h1 { font-size: 1.5rem; }
-    iframe { height: calc(100% - 50px); }
+    iframe { height: calc(100% - 45px); }
   }
 </style>
 </head>
 <body>
-  <div class="container">
-    <h1>Classifica Serie A - Girone Ritorno</h1>
+  <h1>Classifica Serie A - Girone Ritorno</h1>
 
-    <iframe id="classifica"
-      src="https://docs.google.com/spreadsheets/d/e/2PACX-1vT8q6C66WffmTwyx_R7vRys5-je5w2z5TrGY-Kzzx2lVw29s_sxaloluiMHo-jyig/pubhtml?gid=1368345376&single=true&range=A1:U32">
-    </iframe>
-  </div>
+  <iframe id="classifica"
+    src="https://docs.google.com/spreadsheets/d/e/2PACX-1vT8q6C66WffmTwyx_R7vRys5-je5w2z5TrGY-Kzzx2lVw29s_sxaloluiMHo-jyig/pubhtml">
+  </iframe>
 
   <script>
-    // Refresh ad ogni load
+    // Forza reload ad ogni F5
     window.onload = function() {
       const iframe = document.getElementById('classifica');
       iframe.src = iframe.src + '?t=' + new Date().getTime();
     };
 
-    // Aggiorna iframe automaticamente ogni ora
+    // Refresh automatico ogni ora
     setInterval(() => {
       const iframe = document.getElementById('classifica');
       iframe.src = iframe.src + '?t=' + new Date().getTime();
-    }, 3600000); // 1 ora
+    }, 3600000); // 3600000 ms = 1 ora
   </script>
 </body>
 </html>
+
 
 
 
