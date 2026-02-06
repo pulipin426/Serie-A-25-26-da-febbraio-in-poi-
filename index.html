@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Classifica Serie A - Girone Ritorno</title>
+<style>
+  body {
+    font-family: 'Segoe UI', Arial, sans-serif;
+    background: #f9f9f9;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+  }
+
+  .container {
+    width: 95%;
+    max-width: 900px;
+    margin: 20px;
+    background: #ffffff;
+    border-radius: 12px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+    padding: 20px;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+  }
+
+  h1 {
+    color: #0c5a2b; /* verde Serie A */
+    font-size: 2rem;
+    margin-bottom: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    position: relative;
+    z-index: 2;
+  }
+
+  h1 img {
+    width: 40px;
+    height: 40px;
+  }
+
+  iframe {
+    width: 100%;
+    height: 600px;
+    border: none;
+    border-radius: 8px;
+    overflow: hidden;
+  }
+
+  /* Palloni decorativi dietro */
+  .palloni {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    pointer-events: none;
+    z-index: 0;
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    flex-wrap: wrap;
+  }
+
+  .palloni img {
+    width: 25px;
+    opacity: 0.3;
+    animation: bounce 3s infinite alternate;
+  }
+
+  @keyframes bounce {
+    0% { transform: translateY(0px); }
+    50% { transform: translateY(-10px); }
+    100% { transform: translateY(0px); }
+  }
+
+  @media(max-width:600px){
+    h1 { font-size: 1.5rem; }
+    iframe { height: 500px; }
+  }
+</style>
+</head>
+<body>
+  <div class="container">
+    <div class="palloni">
+      <img src="https://upload.wikimedia.org/wikipedia/commons/1/12/Soccerball_icon.svg" alt="pallone">
+      <img src="https://upload.wikimedia.org/wikipedia/commons/1/12/Soccerball_icon.svg" alt="pallone">
+      <img src="https://upload.wikimedia.org/wikipedia/commons/1/12/Soccerball_icon.svg" alt="pallone">
+    </div>
+
+    <h1>
+      <img src="https://upload.wikimedia.org/wikipedia/commons/1/12/Soccerball_icon.svg" alt="pallone">
+      Classifica Serie A - Girone Ritorno
+    </h1>
+
+    <iframe id="classifica" src="https://docs.google.com/spreadsheets/d/e/2PACX-1vT8q6C66WffmTwyx_R7vRys5-je5w2z5TrGY-Kzzx2lVw29s_sxaloluiMHo-jyig/pubhtml?gid=1368345376&single=true"></iframe>
+  </div>
+
+  <script>
+    // Aggiorna iframe ogni ora (3600000 ms)
+    setInterval(() => {
+      const iframe = document.getElementById('classifica');
+      iframe.src = iframe.src;
+    }, 3600000);
+  </script>
+</body>
+</html>
