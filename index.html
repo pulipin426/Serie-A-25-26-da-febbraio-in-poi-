@@ -28,60 +28,24 @@
     color: #0c5a2b; /* verde Serie A */
     font-size: 2rem;
     margin: 10px 0;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 10px;
-  }
-
-  h1 img {
-    width: 40px;
-    height: 40px;
-  }
-
-  .palloni {
-    display: flex;
-    justify-content: center;
-    gap: 10px;
-    margin-bottom: 10px;
-  }
-
-  .palloni img {
-    width: 25px;
-    opacity: 0.3;
-    animation: bounce 3s infinite alternate;
-  }
-
-  @keyframes bounce {
-    0% { transform: translateY(0px); }
-    50% { transform: translateY(-10px); }
-    100% { transform: translateY(0px); }
+    text-align: center;
   }
 
   iframe {
     width: 100%;
-    height: calc(100% - 120px); /* spazio per header + palloni */
+    height: calc(100% - 60px); /* spazio per header */
     border: none;
   }
 
   @media(max-width:600px){
     h1 { font-size: 1.5rem; }
-    .palloni img { width: 20px; }
+    iframe { height: calc(100% - 50px); }
   }
 </style>
 </head>
 <body>
   <div class="container">
-    <div class="palloni">
-      <img src="https://upload.wikimedia.org/wikipedia/commons/1/12/Soccerball_icon.svg" alt="pallone">
-      <img src="https://upload.wikimedia.org/wikipedia/commons/1/12/Soccerball_icon.svg" alt="pallone">
-      <img src="https://upload.wikimedia.org/wikipedia/commons/1/12/Soccerball_icon.svg" alt="pallone">
-    </div>
-
-    <h1>
-      <img src="https://upload.wikimedia.org/wikipedia/commons/1/12/Soccerball_icon.svg" alt="pallone">
-      Classifica Serie A - Girone Ritorno
-    </h1>
+    <h1>Classifica Serie A - Girone Ritorno</h1>
 
     <!-- Iframe full-page: mostra A1:U32 -->
     <iframe id="classifica"
@@ -90,12 +54,19 @@
   </div>
 
   <script>
-    // Aggiorna iframe ogni ora (3600000 ms)
+    // Refresh iframe ad ogni load
+    window.onload = function() {
+      const iframe = document.getElementById('classifica');
+      iframe.src = iframe.src + '?t=' + new Date().getTime();
+    };
+
+    // Aggiorna iframe automaticamente ogni ora
     setInterval(() => {
       const iframe = document.getElementById('classifica');
-      iframe.src = iframe.src;
-    }, 3600000);
+      iframe.src = iframe.src + '?t=' + new Date().getTime();
+    }, 3600000); // 1 ora
   </script>
 </body>
 </html>
+
 
